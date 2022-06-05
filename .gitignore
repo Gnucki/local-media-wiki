@@ -1,0 +1,12 @@
+# Environment
+.env
+
+# Run
+.run
+
+# Dependencies
+node_modules
+
+# MediaWiki sources
+# Remove this line if you want to commit some changes (not recommended)
+src

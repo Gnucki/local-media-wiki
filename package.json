@@ -1,0 +1,28 @@
+{
+  "name": "local-media-wiki",
+  "version": "1.0.0",
+  "description": "Install a local WikiMedia in less than 10 minutes !",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gnucki/local-media-wiki.git"
+  },
+  "keywords": [
+    "local",
+    "wiki",
+    "mediawiki",
+    "docker",
+    "environment"
+  ],
+  "author": "Thomas Prelot <tprelot@gmail.com>",
+  "license": "See LICENSE file",
+  "bugs": {
+    "url": "https://github.com/Gnucki/local-media-wiki/issues"
+  },
+  "homepage": "https://github.com/Gnucki/local-media-wiki#readme",
+  "dependencies": {
+  }
+}

@@ -1,0 +1,45 @@
+version: '3.7'
+services:
+    webserver:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - 7080:80
+        volumes:
+            - ./src:/var/www
+            - ./.run/logs/apache2:/var/log/apache2
+            - ./.run/logs/npm:/home/www/.npm/_logs
+            - ./.run/logs/php:/var/log/php
+            - ./config/php/php.ini:/usr/local/etc/php/conf.d/app.ini
+            - ./config/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+        depends_on:
+            - database
+
+    database:
+        image: mariadb:10.5
+        environment:
+            MARIADB_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
+            MARIADB_USER: ${DATABASE_USER}
+            MARIADB_PASSWORD: ${DATABASE_PASSWORD}
+        volumes:
+            - ./.run/data/database:/var/lib/mysql
+            - ./.run/logs/database:/var/log/mysql
+            - ./.run/backups:/var/backups
+
+    database-admin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - 7090:80
+        environment:
+            PMA_HOST: database
+        depends_on:
+            - database
+
+    scripter:
+        image: node:gallium-buster
+        volumes:
+            - .:/var/app
+            - ./.run/logs/node:/home/node/.npm/_logs
+        working_dir: /var/app
+        command: node index.js
